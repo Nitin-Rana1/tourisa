@@ -10,14 +10,14 @@ import Header from "../component/header";
 const Upload: NextPage = () => {
   //DB data
   const [title, setTitle] = useState("none");
-  const [url, setUrl] = useState<string | null>(null);
-  const [category, setCategory] = useState(null);
+  const [url, setUrl] = useState<any>(null);
+  const [category, setCategory] = useState<any>(null);
   const [des, setDes] = useState("none");
-  const [disSelected, setDisSelected] = useState<string>("none");
+  const [disSelected, setDisSelected] = useState<any>("none");
   const [price, setPrice] = useState(0);
   const [priceType, setPriceType] = useState("none");
   const [location, setLocation] = useState("none");
-  const [stateSelected, setStateSelected] = useState<string>(statesArr[0]);
+  const [stateSelected, setStateSelected] = useState<any>(statesArr[0]);
   const [contact, setContact] = useState("none");
   // Select menu data and ref
   const [districts, setDistricts] = useState(districtsArr[0]);
