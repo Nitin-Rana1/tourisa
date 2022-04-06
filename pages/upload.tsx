@@ -24,7 +24,7 @@ const Upload: NextPage = () => {
   const stateRef = useRef<HTMLSelectElement | null>(null);
   const districtRef = useRef<HTMLSelectElement | null>(null);
   const [prevImgUrl, setPrevImgUrl] = useState<any>(null);
-
+//hlo
   function stateSelect() {
     let v = stateRef.current?.value;
     setStateSelected(v);
