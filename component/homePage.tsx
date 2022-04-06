@@ -15,27 +15,28 @@ import {
 
 import { db } from "../fireb/firebApp";
 
+interface card {
+  title: string;
+  des: string;
+  state: string;
+  images: string;
+  district: string;
+  category: string;
+  price: number;
+  priceType: string;
+  contact: string;
+  points: number;
+  count: number;
+}
+
 function HomePage() {
   const [plans, setPlans] = useState<Array<card>>([]);
   const [districts, setDistricts] = useState(districtsArr[0]);
   const stateRef = useRef<HTMLSelectElement | null>(null);
   const districtRef = useRef<HTMLSelectElement | null>(null);
-  interface card {
-    title: string;
-    des: string;
-    state: string;
-    images: string;
-    district: string;
-    category: string;
-    price: number;
-    priceType: string;
-    contact: string;
-    points: number;
-    count: number;
-  }
+  const [stateSelected, setStateSelected] = useState("");
   function stateSelect() {
     let v = stateRef.current?.value!;
-    setStateSelected(v);
     let d = statesArr.findIndex((x) => {
       return x == v;
     });
@@ -43,7 +44,6 @@ function HomePage() {
     setDistricts([...districtsArr[d]]);
   }
   //searchBar
-  const [stateSelected, setStateSelected] = useState<string>("");
   const [tagSelected, setTagSelected] = useState<string | null>(null);
   function search() {
     let val = stateRef.current?.value;
