@@ -34,7 +34,7 @@ function HomePage() {
     count: number;
   }
   function stateSelect() {
-    let v = stateRef.current?.value;
+    let v = stateRef.current?.value!;
     setStateSelected(v);
     let d = statesArr.findIndex((x) => {
       return x == v;
@@ -43,7 +43,7 @@ function HomePage() {
     setDistricts([...districtsArr[d]]);
   }
   //searchBar
-  const [stateSelected, setStateSelected] = useState<any>(null);
+  const [stateSelected, setStateSelected] = useState<string>("");
   const [tagSelected, setTagSelected] = useState<string | null>(null);
   function search() {
     let val = stateRef.current?.value;
