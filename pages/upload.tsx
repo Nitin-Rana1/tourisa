@@ -50,6 +50,7 @@ const Upload: NextPage = () => {
     });
   }
   async function submit() {
+    setLoadTxt("Loading");
     let uuid = crypto.randomUUID();
     console.log(uuid);
     const imageRef = ref(storage, stateSelected! + disSelected! + uuid);
@@ -84,6 +85,7 @@ const Upload: NextPage = () => {
       contact: contact,
     });
     setUrl(urll);
+    setLoadTxt("loading complete");
   }
   let categoryArr = [
     "Travel Plans",
@@ -97,10 +99,12 @@ const Upload: NextPage = () => {
     let v = categoryRef.current?.value;
     setCategory(v);
   }
+  const [loadTxt, setLoadTxt] = useState("No loading");
   return (
     <>
       <Header />
       <main className={styles.container}>
+        {loadTxt}
         <h3>Create Your Own Post</h3>
         <section className={styles.form}>
           <label htmlFor='state'>State</label>
