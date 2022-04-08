@@ -54,10 +54,13 @@ const Upload: NextPage = () => {
     let uuid = crypto.randomUUID();
     console.log(uuid);
     const imageRef = ref(storage, stateSelected! + disSelected! + uuid);
+    setLoadTxt("reference created!");
     if (!img) return;
+    setLoadTxt("img is present");
     await uploadBytes(imageRef, img!);
+    setLoadTxt("img uploaded ");
     const urll = await getDownloadURL(imageRef);
-
+    setLoadTxt("img url downloaded ");
     // await uploadBytes(imageRef, img!).then(() => {
     //   getDownloadURL(imageRef)
     //     .then((url) => {
@@ -84,6 +87,8 @@ const Upload: NextPage = () => {
       count: 23,
       contact: contact,
     });
+    setLoadTxt("data set!!");
+
     setUrl(urll);
     setLoadTxt("loading complete");
   }
