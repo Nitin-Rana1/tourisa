@@ -6,6 +6,7 @@ import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import type { NextPage } from "next";
 import Header from "../component/header";
+import { nanoid } from "nanoid";
 
 const Upload: NextPage = () => {
   //DB data
@@ -24,7 +25,7 @@ const Upload: NextPage = () => {
   const stateRef = useRef<HTMLSelectElement | null>(null);
   const districtRef = useRef<HTMLSelectElement | null>(null);
   const [prevImgUrl, setPrevImgUrl] = useState<any>(null);
-//hlo
+  //hlo
   function stateSelect() {
     let v = stateRef.current?.value;
     setStateSelected(v);
@@ -51,8 +52,7 @@ const Upload: NextPage = () => {
   }
   async function submit() {
     setLoadTxt("Loading");
-    alert("yo");
-    let uuid = crypto.randomUUID();
+    let uuid = nanoid();
     alert(uuid);
     setLoadTxt(uuid);
 
