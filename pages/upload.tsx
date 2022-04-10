@@ -51,7 +51,9 @@ const Upload: NextPage = () => {
   }
   async function submit() {
     setLoadTxt("Loading");
+    alert("yo");
     let uuid = crypto.randomUUID();
+    alert(uuid);
     setLoadTxt(uuid);
 
     console.log(uuid);
