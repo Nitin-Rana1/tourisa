@@ -52,6 +52,8 @@ const Upload: NextPage = () => {
   async function submit() {
     setLoadTxt("Loading");
     let uuid = crypto.randomUUID();
+    setLoadTxt(uuid);
+
     console.log(uuid);
     const imageRef = ref(storage, stateSelected! + disSelected! + uuid);
     setLoadTxt("reference created!");
