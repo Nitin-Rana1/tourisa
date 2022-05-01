@@ -20,9 +20,7 @@ function PopularSearch() {
       {snapshots?.docs.map((doc, i) => {
         console.log(doc.data());
         return (
-
           <div key={i}>
-            
           </div>
         );
       })}
