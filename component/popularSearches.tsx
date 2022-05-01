@@ -16,11 +16,11 @@ function PopularSearch() {
 
   return (
     <main>
-      {loading && <h1>populloading</h1>}
       {snapshots?.docs.map((doc, i) => {
-        console.log(doc.data());
+        let d = doc.data();
         return (
           <div key={i}>
+            <img src={d.images} alt={d.des} />
           </div>
         );
       })}
