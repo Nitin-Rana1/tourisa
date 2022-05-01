@@ -1,27 +1,2 @@
 .container{
-  .searchBar{
-    border-bottom: 3px solid gray;
-  }
-  .stateSearchList{
-    width: 80vw;
-    margin: 0vh 0 1vh 0;
-    padding: 1vh;
-  }
-  .searchButton{
-    padding: 1vh;
-    width: 20vw;
-  }
-  .tags{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    span{
-      border-radius: 20px;
-      background-color: rgb(7, 74, 74);
-      color: white;
-      padding: 5px 10px;
-      font-size: 0.8em;
-      margin-bottom: 5px;
-    }
-  }
 }

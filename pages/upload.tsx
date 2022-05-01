@@ -1,5 +1,5 @@
 import styles from "../styles/Upload.module.scss";
-import { statesArr, districtsArr } from "../data/states";
+import { statesArr, districtsArr, categoryArr } from "../data/states";
 import { useRef, useState } from "react";
 import { storage, db } from "../fireb/firebApp";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
@@ -12,7 +12,7 @@ const Upload: NextPage = () => {
   //DB data
   const [title, setTitle] = useState("none");
   const [url, setUrl] = useState<any>(null);
-  const [category, setCategory] = useState<any>(null);
+  const [category, setCategory] = useState<any>(categoryArr[0]);
   const [des, setDes] = useState("none");
   const [disSelected, setDisSelected] = useState<any>("none");
   const [price, setPrice] = useState(0);
@@ -21,7 +21,9 @@ const Upload: NextPage = () => {
   const [stateSelected, setStateSelected] = useState<any>(statesArr[0]);
   const [contact, setContact] = useState("none");
   // Select menu data and ref
-  const [districts, setDistricts] = useState(districtsArr[0]);
+  const [districtsSelectList, setDistrictsSelectList] = useState(
+    districtsArr[0]
+  );
   const stateRef = useRef<HTMLSelectElement | null>(null);
   const districtRef = useRef<HTMLSelectElement | null>(null);
   const [prevImgUrl, setPrevImgUrl] = useState<any>(null);
@@ -33,7 +35,7 @@ const Upload: NextPage = () => {
       return x == v;
     });
     setDisSelected(districtsArr[d][0]);
-    setDistricts([...districtsArr[d]]);
+    setDistrictsSelectList([...districtsArr[d]]);
   }
   function districtSelect() {
     setDisSelected(districtRef.current?.value);
@@ -53,10 +55,7 @@ const Upload: NextPage = () => {
   async function submit() {
     setLoadTxt("Loading");
     let uuid = nanoid();
-    alert(uuid);
     setLoadTxt(uuid);
-
-    console.log(uuid);
     const imageRef = ref(storage, stateSelected! + disSelected! + uuid);
     setLoadTxt("reference created!");
     if (!img) return;
@@ -65,18 +64,6 @@ const Upload: NextPage = () => {
     setLoadTxt("img uploaded ");
     const urll = await getDownloadURL(imageRef);
     setLoadTxt("img url downloaded ");
-    // await uploadBytes(imageRef, img!).then(() => {
-    //   getDownloadURL(imageRef)
-    //     .then((url) => {
-    //       setUrl(url);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.message, "error getting image url");
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.message);
-    //     });
-    // });
     await setDoc(doc(db, "plans", stateSelected! + disSelected! + uuid), {
       title: title,
       des: des,
@@ -96,13 +83,7 @@ const Upload: NextPage = () => {
     setUrl(urll);
     setLoadTxt("loading complete");
   }
-  let categoryArr = [
-    "Travel Plans",
-    "Local Cuisine",
-    "Travel Tips",
-    "Local Spots",
-    "Adventure Spots",
-  ];
+
   const categoryRef = useRef<HTMLSelectElement | null>(null);
   function categorySelect() {
     let v = categoryRef.current?.value;
@@ -134,7 +115,7 @@ const Upload: NextPage = () => {
             name='dis'
             id='dis'
           >
-            {districts.map((val: string, i: number) => {
+            {districtsSelectList.map((val: string, i: number) => {
               return (
                 <option value={val} key={i}>
                   {val}

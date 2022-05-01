@@ -1,6 +1,7 @@
 import styles from "./styles/HomePage.module.scss";
-import { useEffect, useRef, useState } from "react";
-import { statesArr, districtsArr } from "../data/states";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useCollectionOnce } from "react-firebase-hooks/firestore";
+
 import Card from "../component/card";
 
 import {
@@ -14,8 +15,11 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../fireb/firebApp";
+import { QueryContext } from "../pages";
+import { Plane } from "react-loader-spinner";
+import PopularSearch from "./popularSearches";
 
-interface card {
+interface CardIF {
   title: string;
   des: string;
   state: string;
@@ -30,118 +34,36 @@ interface card {
 }
 
 function HomePage() {
-  const [plans, setPlans] = useState<Array<card>>([]);
-  const [districts, setDistricts] = useState(districtsArr[0]);
-  const stateRef = useRef<HTMLSelectElement | null>(null);
-  const districtRef = useRef<HTMLSelectElement | null>(null);
-  const [stateSelected, setStateSelected] = useState("");
-  function stateSelect() {
-    let v = stateRef.current?.value!;
-    let d = statesArr.findIndex((x) => {
-      return x == v;
-    });
+  const [plans, setPlans] = useState<Array<CardIF>>([]);
+  const { query: qu } = useContext(QueryContext);
+  let q = query(collection(db, "plans"));
+  if (qu) q = query(collection(db, "plans"), where(qu.field, "==", qu.value));
+  const [snapshots, loading, err] = useCollectionOnce(q);
 
-    setDistricts([...districtsArr[d]]);
-  }
-  //searchBar
-  const [tagSelected, setTagSelected] = useState<string | null>(null);
-  function search() {
-    let val = stateRef.current?.value;
-    // console.log(districtRef.current?.value);
-    if (!val) return;
-    const q = query(collection(db, "plans"), where("state", "==", val));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const plansArr: any = [];
-      querySnapshot.forEach((doc) => {
-        plansArr.push(doc.data());
-      });
-      setPlans(plansArr);
-    });
-  }
-  useEffect(() => {
-    async function t() {
-      const q = query(collection(db, "plans"));
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const plansArr: any = [];
-        querySnapshot.forEach((doc) => {
-          plansArr.push(doc.data());
-          console.log("hiii", doc.data());
-        });
-        setPlans(plansArr);
-      });
-    }
-    t();
-  }, []);
-  let tags = [
-    "Travel Plans",
-    "Local Cuisine",
-    "Travel Tips",
-    "Local Spots",
-    "Adventure Spots",
-  ];
-  function searchByTag(val: string) {
-    if (!val) return;
-    const q = query(collection(db, "plans"), where("category", "==", val));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const plansArr: any = [];
-      querySnapshot.forEach((doc) => {
-        plansArr.push(doc.data());
-        console.log("hiii", doc.data());
-      });
-      setPlans(plansArr);
-    });
-  }
   return (
     <main className={styles.container}>
-      <section className={styles.searchBar}>
-        <select
-          ref={stateRef}
-          className={styles.stateSearchList}
-          onChange={stateSelect}
-          name='state'
-          id='state'
-        >
-          {statesArr.map((val, i) => {
-            return (
-              <option value={val} key={i}>
-                {val}
-              </option>
-            );
-          })}
-        </select>
-        <button className={styles.searchButton} onClick={search}>
-          Search
-        </button>
-        <div className={styles.tags}>
-          {tags.map((val, i) => {
-            return (
-              <span
-                key={i}
-                onClick={() => {
-                  searchByTag(val);
-                }}
-              >
-                {val}
-              </span>
-            );
-          })}
-        </div>
+      <section className={styles.loader}>
+        {loading && (
+          <Plane
+            secondaryColor='#edebeb'
+            wrapperStyle={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "70vh",
+            }}
+            color='#2fcfff'
+            ariaLabel='loading-indicator'
+          />
+        )}
       </section>
-      {/* <label htmlFor='district'>District</label>
-
-      <select ref={districtRef} name='dis' id='dis'>
-        {districts.map((val, i) => {
-          return (
-            <option value={val} key={i}>
-              {val}
-            </option>
-          );
-        })}
-      </select> */}
-      {plans.map((val, i) => {
+      <article>
+        <PopularSearch/>
+      </article>
+      {snapshots?.docs.map((doc, i) => {
         return (
           <div key={i}>
-            <Card data={val} />
+            <Card data={doc.data() as CardIF} />
           </div>
         );
       })}
