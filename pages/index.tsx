@@ -3,21 +3,28 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import Header from "../component/header";
 import HomePage from "../component/homePage";
-import { createContext, Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import SearchBar from "../component/searchBar";
-interface Query{
-  field: "state"|"category";
+import PopularSearch from "../component/popularSearches";
+interface Query {
+  field: "state" | "category";
   value: string;
 }
 interface Context {
   query: Query | null;
-  setQuery: Dispatch<SetStateAction<Query | null>>
+  setQuery: Dispatch<SetStateAction<Query | null>>;
 }
 
 export const QueryContext = createContext<Context>({} as Context);
 
 const Home: NextPage = () => {
-  
   const [query, setQuery] = useState<Query | null>(null);
   return (
     <QueryContext.Provider value={{ query, setQuery }}>
@@ -30,6 +37,7 @@ const Home: NextPage = () => {
         <Header />
         <main className={styles.main}>
           <SearchBar />
+          {/* <PopularSearch /> */}
           <HomePage />
         </main>
       </div>
