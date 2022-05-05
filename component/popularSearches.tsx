@@ -6,7 +6,7 @@ import { db } from "../fireb/firebApp";
 
 import styles from "./styles/PopularSearch.module.scss";
 function PopularSearch() {
-  const [plans, setPlans] = useState([]);
+  // const [plans, setPlans] = useState([]);
   const plansRef = collection(db, "plans");
   const q = query(plansRef, orderBy("points", "desc"), limit(3));
   const [snapshots, loading, err] = useCollectionOnce(q);
