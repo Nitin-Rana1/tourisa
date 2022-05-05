@@ -15,7 +15,6 @@ import {
 
 import { db } from "../fireb/firebApp";
 import { QueryContext } from "../pages";
-import { Plane } from "react-loader-spinner";
 import PopularSearch from "./popularSearches";
 
 interface CardIF {
@@ -45,17 +44,7 @@ function HomePage() {
           </article>
       <section className={styles.loader}>
         {loading && (
-          <Plane
-            secondaryColor='#edebeb'
-            wrapperStyle={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "70vh",
-            }}
-            color='#2fcfff'
-            ariaLabel='loading-indicator'
-          />
+          <h3>Loading.........</h3>
         )}
       </section>
       {snapshots?.docs.map((doc, i) => {
