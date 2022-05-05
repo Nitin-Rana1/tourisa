@@ -15,7 +15,7 @@ function PopularSearch() {
   return (
     <main className={styles.container}>
       {loading && <h1>populloading</h1>}
-      <h2>Popular searches</h2>
+      {!loading && <h2>Popular searches</h2>}
       <div className={styles.allCards}>
         {snapshots?.docs.map((doc, i) => {
           let d = doc.data();
