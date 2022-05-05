@@ -11,7 +11,6 @@ import {
   query,
   where,
   onSnapshot,
-  getDocs,
 } from "firebase/firestore";
 
 import { db } from "../fireb/firebApp";
@@ -41,12 +40,40 @@ function HomePage() {
   const [snapshots, loading, err] = useCollectionOnce(q);
   return (
     <main className={styles.container}>
+<<<<<<< HEAD
       {/* {loading && <h1>Loading</h1>} */}
       {snapshots?.docs.map((doc, i) => (
         <div key={i}>
           <Card data={doc.data() as CardIF} />
         </div>
       ))}
+=======
+          <article>
+            <PopularSearch />
+          </article>
+      <section className={styles.loader}>
+        {loading && (
+          <Plane
+            secondaryColor='#edebeb'
+            wrapperStyle={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "70vh",
+            }}
+            color='#2fcfff'
+            ariaLabel='loading-indicator'
+          />
+        )}
+      </section>
+      {snapshots?.docs.map((doc, i) => {
+        return (
+          <div key={i}>
+            <Card data={doc.data() as CardIF} />
+          </div>
+        );
+      })}
+>>>>>>> starting
     </main>
   );
 }
