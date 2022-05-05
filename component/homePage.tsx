@@ -39,14 +39,6 @@ function HomePage() {
   const [snapshots, loading, err] = useCollectionOnce(q);
   return (
     <main className={styles.container}>
-<<<<<<< HEAD
-      {/* {loading && <h1>Loading</h1>} */}
-      {snapshots?.docs.map((doc, i) => (
-        <div key={i}>
-          <Card data={doc.data() as CardIF} />
-        </div>
-      ))}
-=======
           <article>
             <PopularSearch />
           </article>
@@ -62,7 +54,6 @@ function HomePage() {
           </div>
         );
       })}
->>>>>>> starting
     </main>
   );
 }
