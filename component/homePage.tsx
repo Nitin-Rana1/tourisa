@@ -1,6 +1,6 @@
 import styles from "./styles/HomePage.module.scss";
 import { useContext, useEffect, useRef, useState } from "react";
-import { useCollectionOnce } from "react-firebase-hooks/firestore";
+import  useCollectionOnce  from "../fireb/useCollectionOnce";
 
 import Card from "../component/card";
 

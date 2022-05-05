@@ -1,6 +1,7 @@
 import { query, collection, where, orderBy, limit } from "firebase/firestore";
 import { useState, useContext } from "react";
-import { useCollectionOnce } from "react-firebase-hooks/firestore";
+import  useCollectionOnce  from "../fireb/useCollectionOnce";
+
 import { db } from "../fireb/firebApp";
 // import { QueryContext } from "../pages";
 
@@ -18,7 +19,6 @@ function PopularSearch() {
       <div className={styles.allCards}>
         {snapshots?.docs.map((doc, i) => {
           let d = doc.data();
-          console.log(d);
           return (
             <span className={styles.oneCard} key={i}>
               <img src={d.images} alt='popularSearch' />
