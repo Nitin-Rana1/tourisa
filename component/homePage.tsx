@@ -11,7 +11,6 @@ import {
   query,
   where,
   onSnapshot,
-  getDocs,
 } from "firebase/firestore";
 
 import { db } from "../fireb/firebApp";
@@ -39,9 +38,11 @@ function HomePage() {
   let q = query(collection(db, "plans"));
   if (qu) q = query(collection(db, "plans"), where(qu.field, "==", qu.value));
   const [snapshots, loading, err] = useCollectionOnce(q);
-
   return (
     <main className={styles.container}>
+          <article>
+            <PopularSearch />
+          </article>
       <section className={styles.loader}>
         {loading && (
           <Plane
@@ -57,9 +58,6 @@ function HomePage() {
           />
         )}
       </section>
-      <article>
-        <PopularSearch/>
-      </article>
       {snapshots?.docs.map((doc, i) => {
         return (
           <div key={i}>
