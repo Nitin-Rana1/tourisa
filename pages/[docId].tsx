@@ -110,7 +110,7 @@ function Post() {
           </div>
           <div>
             <b>Comment: </b>
-            <textarea name="ta" id="ta" cols="30" rows="5"></textarea>
+            <textarea name="ta" id="ta" cols={30} rows={5}></textarea>
           </div>
         </section>
       )}
