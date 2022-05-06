@@ -94,7 +94,7 @@ function Card({ data, id }: { data: card; id: string }) {
             </div>
           </span>
           <span className={styles.gmap}>
-            <img src='gmap.jpg' alt='googleMap' />
+            <img src='/g.jpg' alt='googleMap' />
           </span>
         </article>
       </section>
