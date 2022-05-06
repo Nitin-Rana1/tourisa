@@ -3,16 +3,16 @@ import Link from "next/link";
 function Header() {
   return (
     <main className={styles.container}>
-      <h2>
+      <h3>
         <Link href='/'>
           <a>Tourisa</a>
         </Link>
-      </h2>
-      <h3>
+      </h3>
+      <h4>
         <Link href='/upload'>
           <a>Upload</a>
         </Link>
-      </h3>
+      </h4>
     </main>
   );
 }
