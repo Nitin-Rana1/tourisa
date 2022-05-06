@@ -22,7 +22,7 @@ function PopularSearch() {
           return (
             <span className={styles.oneCard} key={i}>
               <img src={d.images} alt='popularSearch' />
-              <span>{d.title} dklf d df dkjf kfj lkjfj   skf</span>
+              <span>{d.title}</span>
             </span>
           );
         })}
