@@ -24,71 +24,79 @@ function Card({ data, id }: { data: card; id: string }) {
       <section className={styles.card}>
         <h3 className={styles.title}>{data.title}</h3>
 
-        <Link href={"/plans/" + id}>
+        <Link href={id}>
           <img src={data.images} />
         </Link>
         <div>
           <b>Description:</b>
-          {data.des}
+          <span>{data.des}</span>
         </div>
-        <div className={styles.ratings}>
-          <b>Rating:   </b>
-          {fiveArr.map((val, i) => {
-            let cl = "gray";
-            if (i < stars) {
-              cl = "shine";
-            }
-            return (
-              <img
-                className={styles[cl]}
-                key={i}
-                src='star.png'
-                alt='star'
-              />
-            );
-          })}
-        </div>
-        
-        <div>
-          <b>State: </b>
-          {data.state}
-        </div>
-        <div>
-          <b>District: </b>
-          {data.district}
-        </div>
-        <div>
-          <b>Category: </b>
-          {data.category}
-        </div>
-        <div>
-          <b>Price: </b>
-          {data.price}
-        </div>
-        <div>
-          <b>Price Type: </b>
-          {data.priceType}
-        </div>
+        <article className={styles.imgAndDes}>
+          <span>
+            <div className={styles.ratings}>
+              <b>Rating: </b>
+              <span>
+                {fiveArr.map((val, i) => {
+                  let cl = "gray";
+                  if (i < stars) {
+                    cl = "shine";
+                  }
+                  return (
+                    <img
+                      className={styles[cl]}
+                      key={i}
+                      src='star.png'
+                      alt='star'
+                    />
+                  );
+                })}
+              </span>
+            </div>
 
-        <div className={styles.rateIt}>
-          <b>Rate It:    </b>
-          {fiveArr.map((val, i) => {
-            let cl = "gray";
-            if (i < rateIt) {
-              cl = "shine";
-            }
-            return (
-              <img
-                onClick={() => setRateIt(i + 1)}
-                className={styles[cl]}
-                key={i}
-                src='star.png'
-                alt='star'
-              />
-            );
-          })}
-        </div>
+            <div>
+              <b>State: </b>
+              <span>{data.state}</span>
+            </div>
+            <div>
+              <b>District: </b>
+              {data.district}
+            </div>
+            <div>
+              <b>Category: </b>
+              {data.category}
+            </div>
+            <div>
+              <b>Price: </b>
+              {data.price}
+            </div>
+            <div>
+              <b>Price Type: </b>
+              {data.priceType}
+            </div>
 
+            <div className={styles.rateIt}>
+              <b>Rate It: </b>
+              {fiveArr.map((val, i) => {
+                let cl = "gray";
+                if (i < rateIt) {
+                  cl = "shine";
+                }
+                return (
+                  <img
+                    onClick={() => setRateIt(i + 1)}
+                    className={styles[cl]}
+                    key={i}
+                    src='star.png'
+                    alt='star'
+                  />
+                );
+              })}
+            </div>
+          </span>
+          <span className={styles.gmap}>
+            <img src='gmap.png' alt='googleMap' />
+          </span>
+        </article>
       </section>
     </main>
   );

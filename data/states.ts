@@ -32,7 +32,7 @@ export const statesArr = new Array(
   "Tamil Nadu",
   "Tripura",
   "Uttar Pradesh",
-  "Uttaranchal",
+  "Uttarakhand",
   "West Bengal"
 );
 

@@ -3,20 +3,21 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
-
     .oneCard {
       position: relative;
       padding-right: 3vw;
 
       img {
         width: 60vw;
+        
       }
 
       span {
         position: absolute;
         left: 0;
         bottom: 0;
-        width: 100%;
+        width: 60vw;
+
         color: white;
         font: bold 24px/45px Helvetica, Sans-Serif;
         letter-spacing: -1px;

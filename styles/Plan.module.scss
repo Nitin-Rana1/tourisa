@@ -1,0 +1,43 @@
+.container {
+  width: 100vw;
+  // max-height: 50vh;
+  overflow: scroll;
+  padding: 3vw;
+  background-color: #c6c4c9;
+  min-height: 100vh;
+
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 3vw;
+
+    .title {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .rateIt {
+      display: flex;
+      align-items: center;
+      img {
+        width: 7vw;
+        margin-left: 10px;
+      }
+    }
+    .ratings{
+      display: flex;
+      align-items: center;
+      img {
+        width: 7vw;
+        margin-left: 10px;
+      }
+    }
+    .gray{
+      filter: grayscale(100%);
+    }
+  }
+}

@@ -32,7 +32,7 @@ interface CardIF {
 }
 
 function AllPlans() {
-  const [plans, setPlans] = useState<Array<CardIF>>([]);
+  // const [plans, setPlans] = useState<Array<CardIF>>([]);
   const { query: qu } = useContext(QueryContext);
   let q = query(collection(db, "plans"));
   if (qu) q = query(collection(db, "plans"), where(qu.field, "==", qu.value));

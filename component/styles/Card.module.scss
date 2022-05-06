@@ -3,7 +3,7 @@
   // max-height: 50vh;
   overflow: scroll;
   padding: 3vw;
-  background-color: #e1e7eb;
+  background-color:#cdcfd2;
 
   .card {
     background-color: white;
@@ -23,20 +23,37 @@
       display: flex;
       align-items: center;
       img {
-        width: 7vw;
-        margin-left: 10px;
+        width: 5vw;
       }
     }
     .ratings{
       display: flex;
       align-items: center;
       img {
-        width: 7vw;
-        margin-left: 10px;
+        width: 5vw;
       }
     }
     .gray{
       filter: grayscale(100%);
     }
+  }
+}
+.imgAndDes{
+  display: flex;
+  justify-content: space-between;
+  div{
+    display: flex;
+    justify-content: space-between;
+  }
+  img{
+    width: 100%;
+  }
+  .gmap{
+    display: grid;
+    align-items: center;
+    min-width: 35vw;
+    max-width: 37vw;
+
+    padding: 5px 0 0 5px;
   }
 }

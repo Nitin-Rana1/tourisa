@@ -3,4 +3,11 @@
   display: flex;
   justify-content: space-between  ;
   color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  letter-spacing: normal;
+  font-style: italic;
+  h2, h3{
+    display: flex;
+    align-items: center;
+  }
 }

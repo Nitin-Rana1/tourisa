@@ -1,37 +1,53 @@
 .container {
-  h3{
+  h3 {
     text-align: center;
   }
+
   section {
     display: flex;
     flex-wrap: wrap;
     padding: 3vw;
     position: relative;
+
     label,
     select,
-    input, textarea {
+    input,
+    textarea {
       width: 50%;
       margin-bottom: 1vh;
     }
-    input, textarea{
+
+    input,
+    textarea {
       font-size: 0.8em;
     }
-    textarea{
+
+    textarea {
       height: 15vh;
     }
-    img{
-      width: 80%;
-      margin-left: 10%;
-    }
+
   }
+
   .button {
     display: grid;
     place-items: center;
     height: 10vh;
-    button{
+
+    button {
       background-color: coral;
       color: white;
       font-size: 1.2em;
     }
+  }
+}
+
+.previewImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    max-height: 25vh;
+    max-width: 100%;
   }
 }

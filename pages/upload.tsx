@@ -1,4 +1,4 @@
-import styles from '../styles/Upload.module.scss';
+import styles from "../styles/Upload.module.scss";
 import { statesArr, districtsArr, categoryArr } from "../data/states";
 import { useRef, useState } from "react";
 import { storage, db } from "../fireb/firebApp";
@@ -53,17 +53,11 @@ const Upload: NextPage = () => {
     });
   }
   async function submit() {
-    setLoadTxt("Loading");
     let uuid = nanoid();
-    setLoadTxt(uuid);
     const imageRef = ref(storage, stateSelected! + disSelected! + uuid);
-    setLoadTxt("reference created!");
     if (!img) return;
-    setLoadTxt("img is present");
-    await uploadBytes(imageRef, img!);  
-    setLoadTxt("img uploaded ");
+    await uploadBytes(imageRef, img!);
     const urll = await getDownloadURL(imageRef);
-    setLoadTxt("img url downloaded ");
     await setDoc(doc(db, "plans", stateSelected! + disSelected! + uuid), {
       title: title,
       des: des,
@@ -79,10 +73,8 @@ const Upload: NextPage = () => {
       count: 23,
       contact: contact,
     });
-    setLoadTxt("data set!!");
 
     setUrl(urll);
-    setLoadTxt("loading complete");
   }
 
   const categoryRef = useRef<HTMLSelectElement | null>(null);
@@ -90,12 +82,10 @@ const Upload: NextPage = () => {
     let v = categoryRef.current?.value;
     setCategory(v);
   }
-  const [loadTxt, setLoadTxt] = useState("No loading");
   return (
     <>
       <Header />
       <main className={styles.container}>
-        {loadTxt}
         <h3>Create Your Own Post</h3>
         <section className={styles.form}>
           <label htmlFor='state'>State</label>
@@ -184,8 +174,10 @@ const Upload: NextPage = () => {
             onChange={(e) => setContact(e.target.value)}
           />
           <input type='file' onChange={imgInput} />
-          {prevImgUrl && <img src={prevImgUrl} />}
         </section>
+        <div className={styles.previewImg}>
+          {prevImgUrl && <img src={prevImgUrl} />}
+        </div>
         <div className={styles.button}>
           <button onClick={submit}>Submit</button>
         </div>

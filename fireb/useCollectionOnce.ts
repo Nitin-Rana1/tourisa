@@ -17,6 +17,7 @@ export default function useCollectionOnce(
   const [snapshots, setSnapshots] = useState<QuerySnapshot<DocumentData>>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<FirebaseError>();
+  const queryString = JSON.stringify(query);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,6 +30,6 @@ export default function useCollectionOnce(
       }
     };
     fetchData();
-  }, []);
+  }, [queryString]);
   return [snapshots, loading, error];
 }
