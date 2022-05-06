@@ -29,7 +29,7 @@ function Card({ data, id }: { data: card; id: string }) {
         </Link>
         <div>
           <b>Description:</b>
-          <span>{data.des}</span>
+          <span className={styles.desc}>{data.des}</span>
         </div>
         <article className={styles.imgAndDes}>
           <span>
