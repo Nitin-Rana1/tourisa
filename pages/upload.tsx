@@ -1,4 +1,4 @@
-import styles from "../styles/Upload.module.scss";
+import styles from '../styles/Upload.module.scss';
 import { statesArr, districtsArr, categoryArr } from "../data/states";
 import { useRef, useState } from "react";
 import { storage, db } from "../fireb/firebApp";
@@ -60,7 +60,7 @@ const Upload: NextPage = () => {
     setLoadTxt("reference created!");
     if (!img) return;
     setLoadTxt("img is present");
-    await uploadBytes(imageRef, img!);
+    await uploadBytes(imageRef, img!);  
     setLoadTxt("img uploaded ");
     const urll = await getDownloadURL(imageRef);
     setLoadTxt("img url downloaded ");
@@ -71,6 +71,7 @@ const Upload: NextPage = () => {
       district: disSelected,
       category: category,
       price: price,
+      priceType: priceType,
       location: location,
       images: urll,
       tourisaVerified: true,

@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import Header from "../component/header";
-import HomePage from "../component/homePage";
 import {
   createContext,
   Dispatch,
@@ -13,6 +12,7 @@ import {
 } from "react";
 import SearchBar from "../component/searchBar";
 import PopularSearch from "../component/popularSearches";
+import AllPlans from "../component/allPlans";
 interface Query {
   field: "state" | "category";
   value: string;
@@ -37,8 +37,8 @@ const Home: NextPage = () => {
         <Header />
         <main className={styles.main}>
           <SearchBar />
-          {/* <PopularSearch /> */}
-          <HomePage />
+          <PopularSearch />
+          <AllPlans />
         </main>
       </div>
     </QueryContext.Provider>

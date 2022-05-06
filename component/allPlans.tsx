@@ -1,8 +1,7 @@
-import styles from "./styles/HomePage.module.scss";
+import styles from "./styles/AllPlans.module.scss";
 import { useContext, useEffect, useRef, useState } from "react";
-import  useCollectionOnce  from "../fireb/useCollectionOnce";
-
-import Card from "../component/card";
+import useCollectionOnce from "../fireb/useCollectionOnce";
+import Card from "./card";
 
 import {
   collection,
@@ -29,9 +28,10 @@ interface CardIF {
   contact: string;
   points: number;
   count: number;
+  // id: string;
 }
 
-function HomePage() {
+function AllPlans() {
   const [plans, setPlans] = useState<Array<CardIF>>([]);
   const { query: qu } = useContext(QueryContext);
   let q = query(collection(db, "plans"));
@@ -39,22 +39,18 @@ function HomePage() {
   const [snapshots, loading, err] = useCollectionOnce(q);
   return (
     <main className={styles.container}>
-          <article>
-            <PopularSearch />
-          </article>
       <section className={styles.loader}>
-        {loading && (
-          <h3>Loading.........</h3>
-        )}
+        {loading && <h3>Loading.........</h3>}
       </section>
       {snapshots?.docs.map((doc, i) => {
+        
         return (
           <div key={i}>
-            <Card data={doc.data() as CardIF} />
+            <Card data={doc.data() as CardIF} id = {doc.id} />
           </div>
         );
       })}
     </main>
   );
 }
-export default HomePage;
+export default AllPlans;

@@ -29,6 +29,6 @@ export default function useCollectionOnce(
       }
     };
     fetchData();
-  }, [query]);
+  }, []);
   return [snapshots, loading, error];
 }
